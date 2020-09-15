@@ -11,6 +11,7 @@ import { MultipleSelctionQuestionComponent } from './serpro-components/question-
 
 // Import NGPrime Modules
 import {EditorModule} from 'primeng/editor';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {EditorModule} from 'primeng/editor';
     FormsModule,
     EditorModule,
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

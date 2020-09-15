@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Answer } from 'src/app/models/answer.model';
+import { Question } from 'src/app/models/question.model';
 
 @Component({
   selector: 'app-multiple-selction-question',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MultipleSelctionQuestionComponent implements OnInit {
 
-  constructor() { }
+  question: Question;
+
+  constructor() { 
+    this.question = new Question ();
+    this.question.answers.push(new Answer());
+  }
 
   ngOnInit(): void {
+
+  }
+
+  addNewAnswer () {
+    this.question.answers.push(new Answer());
   }
 
 }

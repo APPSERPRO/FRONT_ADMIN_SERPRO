@@ -1,1 +1,18 @@
-<p>multiple-selction-question works!</p>
+
+<hr>
+<div>
+    <p-editor [(ngModel)]="question.statement" [style]="{'height':'320px'}"></p-editor>
+</div>
+
+<div [innerHTML]="question.statement"></div>
+
+{{question.statement }}
+
+<hr>
+
+<div *ngFor="let answer of question.answers">
+    
+    <p-editor [(ngModel)]="answer.statement" [style]="{'height':'100px'}"></p-editor>
+</div>
+<button pButton type="button" label="ADD NEW ANSWER" (click)="addNewAnswer ()"></button>
+<hr>

@@ -10,10 +10,13 @@ import { Question } from 'src/app/models/question.model';
 export class MultipleSelctionQuestionComponent implements OnInit {
 
   question: Question;
+  defaultAnsewersQty: number = 4;
 
   constructor() { 
     this.question = new Question ();
-    this.question.answers.push(new Answer());
+    for (let cont=0; cont< this.defaultAnsewersQty; cont++) {
+      this.addNewAnswer();
+    }
   }
 
   ngOnInit(): void {
@@ -24,4 +27,17 @@ export class MultipleSelctionQuestionComponent implements OnInit {
     this.question.answers.push(new Answer());
   }
 
+  removeAnswer (answerIndex) {
+    this.question.answers.splice (answerIndex,1);
+  }
+  changeGradeValue (answer, increment: number) {
+    if (answer.grade < 100 && increment >0) {
+      answer.grade += increment;
+    } else  if  (answer.grade > -100 && increment <0) {
+      answer.grade += increment;
+    }
+  }
+  saveQuestion () {
+    
+  }
 }

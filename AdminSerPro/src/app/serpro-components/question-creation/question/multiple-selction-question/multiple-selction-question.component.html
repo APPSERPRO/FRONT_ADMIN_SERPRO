@@ -1,18 +1,50 @@
 
+<p-card header="Enunciado de la pregunta">    
+    <div>
+        <p-editor [(ngModel)]="question.statement" [style]="{'height':'320px'}"></p-editor>
+    </div>    
+    <p-footer>
+        Intruccion y descripcion de lo que es un enunciado de pregunta
+    </p-footer>
+</p-card>
+
+
 <hr>
-<div>
-    <p-editor [(ngModel)]="question.statement" [style]="{'height':'320px'}"></p-editor>
-</div>
+<p-card header="Respuestas">
+    <div *ngFor="let answer of question.answers; let indexAnswer = index">    
 
-<div [innerHTML]="question.statement"></div>
-
-{{question.statement }}
-
+        <p-card header="Respuesta {{indexAnswer+1}}">
+            <p-header>
+                <button *ngIf="indexAnswer != 0 && indexAnswer != 1" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="removeAnswer (indexAnswer)"></button>
+            </p-header>
+            <p-editor [(ngModel)]="answer.statement" [style]="{'height':'100px'}"></p-editor>
+            <p-footer>
+                <div>
+                    <h5>Calificación: {{answer.grade}}</h5>
+                    <button pButton pRipple type="button" icon="pi pi-minus" class="p-button-rounded p-button-danger p-button-outlined" (click)="changeGradeValue (answer, -10)"></button>
+                    <p-slider [(ngModel)]="answer.grade" [min]="-100" [max]="100"  [step]="10" [style]="{'width':'50%'}"></p-slider>
+                    <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-help p-button-outlined" (click)="changeGradeValue (answer, 10)"></button>                    
+                </div>
+                
+                <p>
+                    El valor de la calificacion debe estar entre -100% y 100%.
+                    Asigna 100%
+                </p>
+            </p-footer>
+        </p-card>
+    </div>
+    <p-footer>
+        <button pButton type="button" label="Adicionar Respuesta" (click)="addNewAnswer ()"></button>
+    </p-footer>
+</p-card>
 <hr>
-
-<div *ngFor="let answer of question.answers">
-    
-    <p-editor [(ngModel)]="answer.statement" [style]="{'height':'100px'}"></p-editor>
-</div>
-<button pButton type="button" label="ADD NEW ANSWER" (click)="addNewAnswer ()"></button>
+<p-card header="Retroalimentacion">    
+    <div>
+        <p-editor [(ngModel)]="question.feedback" [style]="{'height':'320px'}"></p-editor>
+    </div>    
+    <p-footer>
+        Intruccion y descripcion de lo que es un enunciado de pregunta
+    </p-footer>
+</p-card>
 <hr>
+<button pButton type="button" label="GUARDAR PREGUNTA" (click)="saveQuestion ()"></button>

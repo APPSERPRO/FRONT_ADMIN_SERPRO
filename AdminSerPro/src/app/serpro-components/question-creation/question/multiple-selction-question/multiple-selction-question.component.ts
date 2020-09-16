@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Answer } from 'src/app/models/answer.model';
 import { Question } from 'src/app/models/question.model';
+import { IcfesTestService } from 'src/app/services/icfes-test.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-multiple-selction-question',
@@ -12,8 +14,10 @@ export class MultipleSelctionQuestionComponent implements OnInit {
   question: Question;
   defaultAnsewersQty: number = 4;
 
-  constructor() { 
+  constructor(private icfesTestService: IcfesTestService) { 
     this.question = new Question ();
+    this.question.type = environment.multipleSelectionQuestionType;
+    
     for (let cont=0; cont< this.defaultAnsewersQty; cont++) {
       this.addNewAnswer();
     }
@@ -37,7 +41,32 @@ export class MultipleSelctionQuestionComponent implements OnInit {
       answer.grade += increment;
     }
   }
+
   saveQuestion () {
-    
+    this.icfesTestService.createQuestion (this.question);
   }
+
+  change (event){
+    console.log(event);
+  }
+
+  onInitEditor(event) {
+
+    console.log (event);
+    console.log (event.editor.options.modules);
+
+    let newObj = {
+      ...event.editor.options.modules,
+      imageResize: {
+        displaySize: true
+      }
+    }
+
+    event.editor.options.modules = newObj;
+
+    console.log (event.editor.options.modules);
+
+
+  }
+
 }

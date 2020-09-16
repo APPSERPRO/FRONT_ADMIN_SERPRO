@@ -1,13 +1,16 @@
 
 <p-card header="Enunciado de la pregunta">    
     <div>
-        <p-editor [(ngModel)]="question.statement" [style]="{'height':'320px'}"></p-editor>
+        <p-editor [(ngModel)]="question.statement" [style]="{'height':'320px'}" (onSelectionChange)="change($event)"
+        (onInit)="onInitEditor($event)"></p-editor>
     </div>    
     <p-footer>
         Intruccion y descripcion de lo que es un enunciado de pregunta
     </p-footer>
 </p-card>
-
+{{
+    question.statement
+}}
 
 <hr>
 <p-card header="Respuestas">
@@ -17,7 +20,7 @@
             <p-header>
                 <button *ngIf="indexAnswer != 0 && indexAnswer != 1" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="removeAnswer (indexAnswer)"></button>
             </p-header>
-            <p-editor [(ngModel)]="answer.statement" [style]="{'height':'100px'}"></p-editor>
+            <p-editor [(ngModel)]="answer.statement" [style]="{'height':'100px'}" ></p-editor>
             <p-footer>
                 <div>
                     <h5>Calificación: {{answer.grade}}</h5>

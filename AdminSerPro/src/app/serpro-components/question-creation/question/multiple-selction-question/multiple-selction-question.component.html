@@ -45,7 +45,7 @@
 <hr>
 <p-card header="Retroalimentacion">    
     <div>
-        <p-editor [(ngModel)]="question.feedback" [style]="{'height':'320px'}"></p-editor>
+        <serpro-ng-quill   [idEditor]="'questionFeedback'" name="questionStatement" [(ngModel)]="question.feedback" ></serpro-ng-quill>                               
     </div>    
     <p-footer>
         Intruccion y descripcion de lo que es un enunciado de pregunta

@@ -8,6 +8,8 @@ import { Question } from 'src/app/models/question.model';
 })
 export class QuestionCreationComponent implements OnInit {
 
+  valueEditor: string;
+
   constructor() {
     
   }

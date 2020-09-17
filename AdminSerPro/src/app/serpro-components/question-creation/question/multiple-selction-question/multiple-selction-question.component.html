@@ -1,8 +1,15 @@
 
-<p-card header="Enunciado de la pregunta">    
+<p-card header="Enunciado de la pregunta">
+    <div id="editor">
+        
+    </div>
     <div>
-        <p-editor [(ngModel)]="question.statement" [style]="{'height':'320px'}" (onSelectionChange)="change($event)"
-        (onInit)="onInitEditor($event)"></p-editor>
+        <!--
+            <p-editor [(ngModel)]="question.statement" [style]="{'height':'320px'}" (onSelectionChange)="change($event)"
+                (onInit)="onInitEditor($event)"></p-editor>
+        -->
+        <serpro-ng-quill [idEditor]="'questionStatement'" name="questionStatement" [(ngModel)]="question.statement" ></serpro-ng-quill>
+
     </div>    
     <p-footer>
         Intruccion y descripcion de lo que es un enunciado de pregunta
@@ -20,13 +27,16 @@
             <p-header>
                 <button *ngIf="indexAnswer != 0 && indexAnswer != 1" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="removeAnswer (indexAnswer)"></button>
             </p-header>
-            <p-editor [(ngModel)]="answer.statement" [style]="{'height':'100px'}" ></p-editor>
+            <serpro-ng-quill   [idEditor]="'answerStatement' + indexAnswer" name="questionStatement" [(ngModel)]="answer.statement" ></serpro-ng-quill>            
             <p-footer>
                 <div>
                     <h5>Calificación: {{answer.grade}}</h5>
+                <div >
                     <button pButton pRipple type="button" icon="pi pi-minus" class="p-button-rounded p-button-danger p-button-outlined" (click)="changeGradeValue (answer, -10)"></button>
                     <p-slider [(ngModel)]="answer.grade" [min]="-100" [max]="100"  [step]="10" [style]="{'width':'50%'}"></p-slider>
                     <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-help p-button-outlined" (click)="changeGradeValue (answer, 10)"></button>                    
+                </div>
+                    
                 </div>
                 
                 <p>

@@ -3,6 +3,7 @@ import { Answer } from 'src/app/models/answer.model';
 import { Question } from 'src/app/models/question.model';
 import { IcfesTestService } from 'src/app/services/icfes-test.service';
 import { environment } from 'src/environments/environment';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-multiple-selction-question',
@@ -14,10 +15,10 @@ export class MultipleSelctionQuestionComponent implements OnInit {
   question: Question;
   defaultAnsewersQty: number = 4;
 
-  constructor(private icfesTestService: IcfesTestService) { 
+  constructor(private icfesTestService: IcfesTestService) {
     this.question = new Question ();
     this.question.type = environment.multipleSelectionQuestionType;
-    
+
     for (let cont=0; cont< this.defaultAnsewersQty; cont++) {
       this.addNewAnswer();
     }
@@ -42,8 +43,28 @@ export class MultipleSelctionQuestionComponent implements OnInit {
     }
   }
 
+
   saveQuestion () {
-    this.icfesTestService.createQuestion (this.question);
+    let ansWrds = this.question.answers;
+    let correct = true;
+
+    if(this.question.statement != null){
+      for (let i of ansWrds){
+        if (i.statement == undefined || i.grade==0){
+          correct =false;
+           alert("No has llenado algún campo de respuesta");
+           break;
+        }
+      }
+           if(this.question.feedback != null && correct == true) {
+             this.icfesTestService.createQuestion(this.question);
+           }else{
+             alert("No has llenado el campo de  Retroalimentación");
+           }
+    }
+    else{
+      alert("Falta por llenar el enunciado");
+    }
   }
 
   change (event){
@@ -61,12 +82,8 @@ export class MultipleSelctionQuestionComponent implements OnInit {
         displaySize: true
       }
     }
-
     event.editor.options.modules = newObj;
-
-    console.log (event.editor.options.modules);
-
-
+    console.log ( event.editor.options.modules);
   }
 
 }

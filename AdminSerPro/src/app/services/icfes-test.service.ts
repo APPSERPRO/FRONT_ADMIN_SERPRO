@@ -9,6 +9,6 @@ export class IcfesTestService {
   constructor() { }
 
   createQuestion (question: Question) {
-    console.log (question);
+    console.log ("Hola",question);
   }
 }

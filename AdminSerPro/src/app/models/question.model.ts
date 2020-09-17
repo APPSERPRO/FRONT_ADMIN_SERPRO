@@ -15,10 +15,9 @@ export class Question {
         } else {
             this.answers = [];
         }
-        
+
         this.type = type;
         this.correctAnswer = correctAnswer;
         this.feedback = feedback;
     }
-
 }

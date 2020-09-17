@@ -4,20 +4,12 @@
         
     </div>
     <div>
-        <!--
-            <p-editor [(ngModel)]="question.statement" [style]="{'height':'320px'}" (onSelectionChange)="change($event)"
-                (onInit)="onInitEditor($event)"></p-editor>
-        -->
         <serpro-ng-quill [idEditor]="'questionStatement'" name="questionStatement" [(ngModel)]="question.statement" ></serpro-ng-quill>
-
     </div>    
     <p-footer>
         Intruccion y descripcion de lo que es un enunciado de pregunta
     </p-footer>
 </p-card>
-{{
-    question.statement
-}}
 
 <hr>
 <p-card header="Respuestas">

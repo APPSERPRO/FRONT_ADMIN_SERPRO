@@ -2,11 +2,11 @@ import { Answer } from './answer.model';
 
 export class Question {
 
+    icfesModule: number;
     statement: string;
-    type: string;
+    questionType: string;
     answers: Answer [];
     feedback : string;
-    correctAnswer : string;
 
     constructor (statement?: string, answers?: Answer [], type?: string, correctAnswer?:string, feedback?:string) {
         this.statement = statement;
@@ -16,8 +16,7 @@ export class Question {
             this.answers = [];
         }
         
-        this.type = type;
-        this.correctAnswer = correctAnswer;
+        this.questionType = type;        
         this.feedback = feedback;
     }
 

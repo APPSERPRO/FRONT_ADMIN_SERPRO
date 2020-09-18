@@ -17,12 +17,13 @@ export class MultipleSelctionQuestionComponent implements OnInit {
 
   constructor(private icfesTestService: IcfesTestService) { 
     this.question = new Question ();
-    this.question.type = environment.multipleSelectionQuestionType;
+    this.question.questionType = environment.multipleSelectionQuestionType;
     
     for (let cont=0; cont< this.defaultAnsewersQty; cont++) {
       this.addNewAnswer();
     }
   }
+  
 
   ngOnInit(): void {
 

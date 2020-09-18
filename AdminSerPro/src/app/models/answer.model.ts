@@ -4,7 +4,7 @@ export class Answer {
     grade : number;
 
     constructor (grade?: number, statement?: string) {
-        this.grade = 0;
+        this.grade = grade ? grade : 0;
         this.statement = statement;
     }
 

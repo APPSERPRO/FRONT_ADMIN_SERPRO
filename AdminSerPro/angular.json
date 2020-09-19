@@ -23,12 +23,12 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [              
+            "styles": [
               "node_modules/primeng/resources/themes/saga-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
               "src/styles.css",
-              "node_modules/quill/dist/quill.core.css", 
+              "node_modules/quill/dist/quill.core.css",
               "node_modules/quill/dist/quill.snow.css"
             ],
             "scripts": [
@@ -130,6 +130,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AdminSerPro"
+    }
+  },
+  "defaultProject": "AdminSerPro",
+  "cli": {
+    "analytics": "0658ebf0-e39d-4293-b1df-4452188f1296"
+  }
 }

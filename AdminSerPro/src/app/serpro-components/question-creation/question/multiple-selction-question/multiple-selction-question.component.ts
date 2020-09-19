@@ -15,7 +15,7 @@ export class MultipleSelctionQuestionComponent implements OnInit {
   question: Question;
   defaultAnsewersQty: number = 4;
 
-  constructor(private icfesTestService: IcfesTestService) { 
+  constructor(private icfesTestService: IcfesTestService) {
     this.question = new Question ();
     this.question.questionType = environment.multipleSelectionQuestionType;
     
@@ -44,31 +44,29 @@ export class MultipleSelctionQuestionComponent implements OnInit {
     }
   }
 
+
   saveQuestion () {
-    this.icfesTestService.createQuestion (this.question);
-  }
+    let ansWrds = this.question.answers;
+    let correct = true;
 
-  change (event){
-    console.log(event);
-  }
-
-  onInitEditor(event) {
-
-    console.log (event);
-    console.log (event.editor.options.modules);
-
-    let newObj = {
-      ...event.editor.options.modules,
-      imageResize: {
-        displaySize: true
+    if(this.question.statement != null){
+      for (let i of ansWrds){
+        if (i.statement == undefined || i.grade==0){
+          correct =false;
+           alert("No has llenado algún campo de respuesta");
+           break;
+        }
       }
+           if(this.question.feedback != null && correct == true) {
+             this.icfesTestService.createQuestion(this.question);
+           }else{
+             alert("No has llenado el campo de  Retroalimentación");
+           }
     }
-
-    event.editor.options.modules = newObj;
-
-    console.log (event.editor.options.modules);
-
-
+    else{
+      alert("Falta por llenar el enunciado");
+    }
   }
+
 
 }

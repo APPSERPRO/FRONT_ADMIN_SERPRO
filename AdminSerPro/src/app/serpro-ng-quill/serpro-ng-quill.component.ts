@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, HostBinding, Input, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, forwardRef, Input, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import Quill from 'quill';
 
@@ -64,6 +64,8 @@ export class SerproNgQuillComponent implements OnInit, ControlValueAccessor,  Af
     let objReference = this;
     editor.on('editor-change', () => objReference.writeValue(editor.root.innerHTML));
   }
+
+  
 
   onChange: any = () => {}
   onTouch: any = () => {}

@@ -24,7 +24,6 @@ export class MultipleSelctionQuestionComponent implements OnInit {
     }
   }
   
-
   ngOnInit(): void {
 
   }
@@ -46,6 +45,8 @@ export class MultipleSelctionQuestionComponent implements OnInit {
 
 
   saveQuestion () {
+    this.icfesTestService.createQuestion(this.question);
+    /*
     let ansWrds = this.question.answers;
     let correct = true;
 
@@ -65,7 +66,7 @@ export class MultipleSelctionQuestionComponent implements OnInit {
     }
     else{
       alert("Falta por llenar el enunciado");
-    }
+    }*/
   }
 
 

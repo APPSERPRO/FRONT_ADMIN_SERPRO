@@ -11,8 +11,13 @@ import { IcfestModuleService } from '../../services/icfest-module.service'
   providers: [IcfestModuleService]
 })
 export class ModuleComponent implements OnInit {
+  
+  icfesModules: [];
+  selectedModule: IcfesModule;
 
-  constructor(public icfestModuleService: IcfestModuleService) { }
+  constructor(public icfestModuleService: IcfestModuleService) {
+    this.selectedModule = new IcfesModule();
+   }
 
   ngOnInit(): void {
     this.getIcfesModule();
@@ -21,14 +26,14 @@ export class ModuleComponent implements OnInit {
   resetForm(form?: NgForm){
     if(form){
       form.reset();
-      this.icfestModuleService.selectedModule = new IcfesModule();
+      this.selectedModule = new IcfesModule();
     };
   };
 
   getIcfesModule(){
     this.icfestModuleService.getIcfesModule()
     .subscribe(res=>{
-      this.icfestModuleService.icfesModules=res as IcfesModule[];
+      // this.icfestModuleService.icfesModules=res as IcfesModule[];
       console.log(res)
     });
   };

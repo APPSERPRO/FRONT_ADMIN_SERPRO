@@ -2,22 +2,22 @@
     <form #moduleForm="ngForm">
         <div>
             <input type="text" name="knowledgeArea" #name="ngModel" 
-            [(ngModel)]="icfestModuleService.selectedModule.knowledgeArea" 
+            [(ngModel)]="selectedModule.knowledgeArea" 
             placeholder="Enter the knowledgeArea">
         </div>
         <div>
             <input type="text" name="type" #type="ngModel" 
-            [(ngModel)]="icfestModuleService.selectedModule.type" 
+            [(ngModel)]="selectedModule.type" 
             placeholder="Enter the type">
         </div>
         <div>
             <input type="text" name="description" #description="ngModel" 
-            [(ngModel)]="icfestModuleService.selectedModule.description" 
+            [(ngModel)]="selectedModule.description" 
             placeholder="Enter the description">
         </div>
         <div>
             <input type="text" name="evaluate" #evaluate="ngModel" 
-            [(ngModel)]="icfestModuleService.selectedModule.evaluate" 
+            [(ngModel)]="selectedModule.evaluate" 
             placeholder="Enter the evaluate">
         </div>
         <div class="card-action">
@@ -36,7 +36,7 @@
                 <th> Valoracion </th>
             </thead>
             <tbody>
-                <tr *ngFor="let icfesModule of icfestModuleService.icfesModules">
+                <tr *ngFor="let icfesModule of icfesModules">
                     <td>{{ icfesModule.knowledgeArea }}</td>
                     <td>{{ icfesModule.type }}</td>
                     <td>{{ icfesModule.description }}</td>

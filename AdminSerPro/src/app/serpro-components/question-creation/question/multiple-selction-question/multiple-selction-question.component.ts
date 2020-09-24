@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Answer } from 'src/app/models/answer.model';
 import { Question } from 'src/app/models/question.model';
-import { IcfesTestService } from 'src/app/services/icfest-question.service';
+import { IcfestQuestionService } from 'src/app/services/service-question/icfest-question.service';
 import { environment } from 'src/environments/environment';
 
 
@@ -15,7 +15,7 @@ export class MultipleSelctionQuestionComponent implements OnInit {
   question: Question;
   defaultAnsewersQty: number = 4;
 
-  constructor(private icfesTestService: IcfesTestService) {
+  constructor(private icfestQuestionService: IcfestQuestionService) {
     this.question = new Question ();
     this.question.questionType = environment.multipleSelectionQuestionType;
     
@@ -45,7 +45,8 @@ export class MultipleSelctionQuestionComponent implements OnInit {
 
 
   saveQuestion () {
-    this.icfesTestService.createQuestion(this.question);
+    this.question.icfesModuleId = "5f6ba07fe1207d35dcded4cc";
+    this.icfestQuestionService.createQuestion(this.question);
     /*
     let ansWrds = this.question.answers;
     let correct = true;

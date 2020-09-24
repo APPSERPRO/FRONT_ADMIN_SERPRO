@@ -9,13 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class IcfestModuleService {
 
-  selectedModule: IcfesModule;
-  icfesModules: IcfesModule[];
-  
-
   constructor(private http: HttpClient) {
-    this.selectedModule = new IcfesModule();
-   }
+    
+  }
 
   getIcfesModule(){
     return this.http.get(`${environment.urlApiQuestionsSerpro}module`);

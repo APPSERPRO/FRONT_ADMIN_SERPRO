@@ -1,0 +1,48 @@
+<div>
+    <form #moduleForm="ngForm">
+        <div>
+            <input type="text" name="knowledgeArea" #name="ngModel" 
+            [(ngModel)]="icfestModuleService.selectedModule.knowledgeArea" 
+            placeholder="Enter the knowledgeArea">
+        </div>
+        <div>
+            <input type="text" name="type" #type="ngModel" 
+            [(ngModel)]="icfestModuleService.selectedModule.type" 
+            placeholder="Enter the type">
+        </div>
+        <div>
+            <input type="text" name="description" #description="ngModel" 
+            [(ngModel)]="icfestModuleService.selectedModule.description" 
+            placeholder="Enter the description">
+        </div>
+        <div>
+            <input type="text" name="evaluate" #evaluate="ngModel" 
+            [(ngModel)]="icfestModuleService.selectedModule.evaluate" 
+            placeholder="Enter the evaluate">
+        </div>
+        <div class="card-action">
+            <div class="input-field">
+                <button (click)="addModule(moduleForm)" >Save</button>
+                <button (click)="resetForm(moduleForm)" >Clean</button>
+            </div>
+        </div>    
+    </form>    
+    <div>
+        <table>
+            <thead>
+                <th> Area de conocimineto </th>
+                <th> Tipo </th>
+                <th> Descripcion </th>
+                <th> Valoracion </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let icfesModule of icfestModuleService.icfesModules">
+                    <td>{{ icfesModule.knowledgeArea }}</td>
+                    <td>{{ icfesModule.type }}</td>
+                    <td>{{ icfesModule.description }}</td>
+                    <td>{{ icfesModule.evaluate }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

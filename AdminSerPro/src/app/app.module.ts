@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +20,8 @@ import {SliderModule} from 'primeng/slider';
 
 
 import Quill from 'quill';
-import ImageResize  from 'quill-image-resize'
+import ImageResize  from 'quill-image-resize';
+import { ModuleComponent } from './serpro-components/module-creation/module-creation.component'
 
 
 
@@ -28,7 +30,8 @@ import ImageResize  from 'quill-image-resize'
     AppComponent,
     QuestionCreationComponent,
     MultipleSelctionQuestionComponent,
-    SerproNgQuillComponent
+    SerproNgQuillComponent,
+    ModuleComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import ImageResize  from 'quill-image-resize'
     ButtonModule,
     CardModule,
     SliderModule,
-
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

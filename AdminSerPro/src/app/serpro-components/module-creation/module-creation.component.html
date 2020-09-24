@@ -1,29 +1,29 @@
 <div>
     <form #moduleForm="ngForm">
-        <div class="input-field col s12">
+        <div>
             <input type="text" name="knowledgeArea" #name="ngModel" 
             [(ngModel)]="icfestModuleService.selectedModule.knowledgeArea" 
             placeholder="Enter the knowledgeArea">
         </div>
-        <div class="input-field col s12">
+        <div>
             <input type="text" name="type" #type="ngModel" 
             [(ngModel)]="icfestModuleService.selectedModule.type" 
             placeholder="Enter the type">
         </div>
-        <div class="input-field col s12">
+        <div>
             <input type="text" name="description" #description="ngModel" 
             [(ngModel)]="icfestModuleService.selectedModule.description" 
             placeholder="Enter the description">
         </div>
-        <div class="input-field col s12">
+        <div>
             <input type="text" name="evaluate" #evaluate="ngModel" 
             [(ngModel)]="icfestModuleService.selectedModule.evaluate" 
             placeholder="Enter the evaluate">
         </div>
         <div class="card-action">
             <div class="input-field">
-                <button class="btn right" (click)="addModule(moduleForm)" >Save</button>
-                <button class="btn left" (click)="resetForm(moduleForm)" >Clean</button>
+                <button (click)="addModule(moduleForm)" >Save</button>
+                <button (click)="resetForm(moduleForm)" >Clean</button>
             </div>
         </div>    
     </form>    

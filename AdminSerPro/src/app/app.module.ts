@@ -21,7 +21,8 @@ import {SliderModule} from 'primeng/slider';
 
 import Quill from 'quill';
 import ImageResize  from 'quill-image-resize';
-import { ModuleComponent } from './serpro-components/module-creation/module-creation.component'
+import { ModuleComponent } from './serpro-components/module-creation/module-creation.component';
+import { TestCreationComponent } from './serpro-components/test-creation/test-creation.component'
 
 
 
@@ -31,7 +32,8 @@ import { ModuleComponent } from './serpro-components/module-creation/module-crea
     QuestionCreationComponent,
     MultipleSelctionQuestionComponent,
     SerproNgQuillComponent,
-    ModuleComponent
+    ModuleComponent,
+    TestCreationComponent
   ],
   imports: [
     BrowserModule,

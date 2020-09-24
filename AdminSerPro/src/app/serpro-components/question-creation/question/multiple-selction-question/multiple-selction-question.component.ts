@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Answer } from 'src/app/models/answer.model';
 import { Question } from 'src/app/models/question.model';
-import { IcfesTestService } from 'src/app/services/icfes-test.service';
+import { IcfesTestService } from 'src/app/services/icfest-question.service';
 import { environment } from 'src/environments/environment';
 
 

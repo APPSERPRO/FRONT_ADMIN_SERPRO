@@ -1,14 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Question } from '../models/question.model';
+import { HttpClient } from '@angular/common/http';
+import { IcfesTest } from '../models/icfes-test.model';
+import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IcfesTestService {
 
-  constructor() { }
+  selectedTest: IcfesTest;
+  icfesTests: IcfesTest[];
 
-  createQuestion (question: Question) {
-    console.log ("Question Create",question);
+
+  constructor(private http: HttpClient) {
+    this.selectedTest = new IcfesTest();
+   }
+
+  getIcfesTest(){
+    return this.http.get(`${environment.urlApiQuestionsSerpro}`+ `icfesTest`);
+  }
+
+  posIcfesModule(icfesTests: IcfesTest)  {
+    return this.http.post(`${environment.urlApiQuestionsSerpro}` + `icfesTest`, icfesTests);
   }
 }

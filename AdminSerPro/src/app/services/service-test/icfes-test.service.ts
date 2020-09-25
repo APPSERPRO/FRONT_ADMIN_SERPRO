@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IcfesTest } from '../models/icfes-test.model';
-import { environment } from '../../environments/environment';
+import { IcfesTest } from '../../models/test.model';
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({

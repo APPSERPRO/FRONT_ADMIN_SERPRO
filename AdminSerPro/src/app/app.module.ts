@@ -17,6 +17,10 @@ import {EditorModule} from 'primeng/editor';
 import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 import {SliderModule} from 'primeng/slider';
+import {AccordionModule} from 'primeng/accordion';
+import {DropdownModule} from 'primeng/dropdown';
+             
+
 
 
 import Quill from 'quill';
@@ -33,7 +37,8 @@ import { TestCreationComponent } from './serpro-components/test-creation/test-cr
     MultipleSelctionQuestionComponent,
     SerproNgQuillComponent,
     ModuleComponent,
-    TestCreationComponent
+    TestCreationComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,9 @@ import { TestCreationComponent } from './serpro-components/test-creation/test-cr
     CardModule,
     SliderModule,
     FormsModule,
-    HttpClientModule
+    AccordionModule,    
+    HttpClientModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

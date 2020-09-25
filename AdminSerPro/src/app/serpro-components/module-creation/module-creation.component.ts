@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { from, Observable } from 'rxjs';
 import { IcfesModule } from 'src/app/models/icfes-module.model';
-import { IcfestModuleService } from '../../services/icfest-module.service'
+import { IcfestModuleService } from '../../services/service-module/icfest-module.service'
 
 @Component({
   selector: 'app-module',

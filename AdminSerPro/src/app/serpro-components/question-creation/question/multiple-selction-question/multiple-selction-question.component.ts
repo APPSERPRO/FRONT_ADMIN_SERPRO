@@ -3,6 +3,10 @@ import { Answer } from 'src/app/models/answer.model';
 import { Question } from 'src/app/models/question.model';
 import { IcfestQuestionService } from 'src/app/services/service-question/icfest-question.service';
 import { environment } from 'src/environments/environment';
+import {SelectItem} from 'primeng/api';
+import {IcfestModuleService} from '../../../../services/service-module/icfest-module.service';
+import {IcfesModule} from '../../../../models/module.model';
+
 
 
 @Component({
@@ -15,18 +19,34 @@ export class MultipleSelctionQuestionComponent implements OnInit {
   question: Question;
   defaultAnsewersQty: number = 4;
   formsCorrect : boolean = true;
+  items: SelectItem[];
+  item: string;
 
-  constructor(private icfestQuestionService: IcfestQuestionService) {
+  constructor(
+    private icfestModuleService : IcfestModuleService,
+    private icfestQuestionService: IcfestQuestionService
+    ) {
     this.question = new Question ();
     this.question.questionType = environment.multipleSelectionQuestionType;
 
     for (let cont=0; cont< this.defaultAnsewersQty; cont++) {
       this.addNewAnswer();
     }
+
+    this.icfestModuleService.getIcfesModule().subscribe((res: any)=>{
+      this.items = [];
+        for (let i = 0; i < res.length; i++) {
+            this.items.push({label: res[i].knowledgeArea, value: res[i]._id});
+        }  
+    });
   }
 
   ngOnInit(): void {
 
+  }
+
+  getFromModules(){
+    return this.icfestModuleService.getIcfesModule();
   }
 
   addNewAnswer () {
@@ -46,8 +66,9 @@ export class MultipleSelctionQuestionComponent implements OnInit {
 
 
   saveQuestion () {
-    this.question.icfesModuleId = "5f6ba07fe1207d35dcded4cc";
-    this.icfestQuestionService.createQuestion(this.question);
+  
+
+    this.question.icfesModuleId = this.item.valueOf();  
     
     let ansWrds = this.question.answers;
 
@@ -55,20 +76,19 @@ export class MultipleSelctionQuestionComponent implements OnInit {
       for (let i of ansWrds){
         if (i.statement == undefined || i.grade==0){
           this.formsCorrect =false;
-          //alert("No has llenado algún campo de respuesta");
           break;
         }
       }
       if(this.question.feedback != null) {
-        this.icfesTestService.createQuestion(this.question);
+        this.icfestQuestionService.createQuestion(this.question);
       }else{
         this.formsCorrect =false;
-        //alert("No has llenado el campo de  Retroalimentación");
+        
       }
     }
     else{
       this.formsCorrect =false;
-      //alert("Falta por llenar el enunciado");
+    
     }
   }
 

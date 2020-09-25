@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Question } from 'src/app/models/question.model';
 
 @Component({
   selector: 'app-question-creation',
@@ -8,13 +7,11 @@ import { Question } from 'src/app/models/question.model';
 })
 export class QuestionCreationComponent implements OnInit {
 
-  valueEditor: string;
-
   constructor() {
-    
+
+  
   }
 
   ngOnInit(): void {
   }
-
 }

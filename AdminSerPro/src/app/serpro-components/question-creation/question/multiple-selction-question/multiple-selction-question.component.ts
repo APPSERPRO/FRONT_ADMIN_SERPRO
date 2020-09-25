@@ -14,16 +14,17 @@ export class MultipleSelctionQuestionComponent implements OnInit {
 
   question: Question;
   defaultAnsewersQty: number = 4;
+  formsCorrect : boolean = true;
 
   constructor(private icfesTestService: IcfesTestService) {
     this.question = new Question ();
     this.question.questionType = environment.multipleSelectionQuestionType;
-    
+
     for (let cont=0; cont< this.defaultAnsewersQty; cont++) {
       this.addNewAnswer();
     }
   }
-  
+
   ngOnInit(): void {
 
   }
@@ -45,28 +46,27 @@ export class MultipleSelctionQuestionComponent implements OnInit {
 
 
   saveQuestion () {
-    this.icfesTestService.createQuestion(this.question);
-    /*
     let ansWrds = this.question.answers;
-    let correct = true;
 
     if(this.question.statement != null){
       for (let i of ansWrds){
         if (i.statement == undefined || i.grade==0){
-          correct =false;
-           alert("No has llenado algún campo de respuesta");
-           break;
+          this.formsCorrect =false;
+          //alert("No has llenado algún campo de respuesta");
+          break;
         }
       }
-           if(this.question.feedback != null && correct == true) {
-             this.icfesTestService.createQuestion(this.question);
-           }else{
-             alert("No has llenado el campo de  Retroalimentación");
-           }
+      if(this.question.feedback != null) {
+        this.icfesTestService.createQuestion(this.question);
+      }else{
+        this.formsCorrect =false;
+        //alert("No has llenado el campo de  Retroalimentación");
+      }
     }
     else{
-      alert("Falta por llenar el enunciado");
-    }*/
+      this.formsCorrect =false;
+      //alert("Falta por llenar el enunciado");
+    }
   }
 
 

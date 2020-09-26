@@ -22,4 +22,8 @@ export class IcfestQuestionService {
       }
     );
   }
+
+  getQuestions(){
+    return this.httpClient.get(`${environment.urlApiQuestionsSerpro}/question`);
+  }
 }

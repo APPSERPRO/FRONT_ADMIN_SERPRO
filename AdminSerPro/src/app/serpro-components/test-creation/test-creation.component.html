@@ -1,0 +1,47 @@
+<p-card header="CREAR UN TEST">
+  <br><br>
+
+<p-card header="Titulo"  [style]="{'width': '70rem', 'margin-bottom': '4em', 'margin-left':'auto','margin-right':'auto'}">
+    <div>
+      <input type ="text" class="p-inputtext-lg" [style]="{'width': '68rem', 'margin-left':'auto','margin-right':'auto'}" name="title" [(ngModel)]="icfesTest.title" >
+    </div>
+    <p-footer>
+      <div class="alert-danger">
+        <div class="container-error-message" >
+
+        </div>
+      </div>
+    </p-footer>
+</p-card>
+
+<p-card header="Descripcion"  [style]="{'width': '70rem', 'margin-bottom': '4em', 'margin-left':'auto','margin-right':'auto'}">
+    <div>
+      <input type ="text" class="p-inputtext-lg" [style]="{'width': '68rem', 'margin-left':'auto','margin-right':'auto'}" name="description" [(ngModel)]="icfesTest.description" >
+    </div>
+    <p-footer>
+      <div class="alert-danger">
+        <div class="container-error-message" >
+
+        </div>
+      </div>
+    </p-footer>
+</p-card>
+
+<p-card header ="Modulo"  [style]="{'width': '70rem', 'margin-bottom': '4em', 'margin-left':'auto','margin-right':'auto'}">
+    <p-dropdown [options]="itemsModules" [style]="{'width': '68rem'}"
+    [(ngModel)]="itemModule" placeholder="Selecciona el modulo" [virtualScroll]="true" [itemSize]="31" [filter]="false"></p-dropdown>
+</p-card>
+
+<p-card header ="Preguntas"  [style]="{'width': '70rem', 'margin-bottom': '4em', 'margin-left':'auto','margin-right':'auto'}">
+  <!-- LISTA PARA MOSTRAR LAS PREGUNTAS QUE SE ESTAN AGREGANDO-->
+  <p-listbox [options]="itemsSelectedQuestions" [(ngModel)]="itemQuestion" optionLabel="label"></p-listbox>
+  
+  <p-dropdown [options]="itemsQuestions" [style]="{'width': '68rem'}"
+  [(ngModel)]="itemQuestion" placeholder="Selecciona la pregunta" [virtualScroll]="true" [itemSize]="31" [filter]="false"></p-dropdown>
+  <button pButton type="button" label="GUARDAR PREGUNTA" (click)="updateList ()"  [style]="{'width': '20rem'}"></button>
+</p-card>
+
+<button pButton type="button" label="GUARDAR PRUEBA" (click)="saveQuestion ()"  [style]="{'width': '30rem', 'margin-bottom': '4em', 'margin-left':'400px'}"></button>
+
+
+</p-card>

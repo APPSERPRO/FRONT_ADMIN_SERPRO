@@ -4,7 +4,7 @@ export class IcfesTest {
     title: string;
     description: string;
     progress: number;
-    module: number;
+    moduleId: String;
     questions: String[];
 
     constructor () {

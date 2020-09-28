@@ -5,10 +5,10 @@ export class IcfesTest {
     description: string;
     progress: number;
     module: number;
-    questions: Question[];
+    questions: String[];
 
     constructor () {
-      this.questions = new Array <Question>();
+      this.questions = new Array <String>();
     }
 
 

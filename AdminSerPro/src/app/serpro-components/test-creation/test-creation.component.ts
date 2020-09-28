@@ -18,7 +18,7 @@ export class TestCreationComponent implements OnInit {
   itemModule: string;
   itemsQuestions: SelectItem[];
   itemQuestion: Question;
-  QuestionsSelected: Question[];
+  QuestionsSelected: String[];
   itemsSelectedQuestions: SelectItem[];
 
 
@@ -51,8 +51,9 @@ export class TestCreationComponent implements OnInit {
   }
 
   updateList() {
-    this.QuestionsSelected.push(this.itemQuestion);
-    this.itemsSelectedQuestions.push({label: this.itemQuestion.feedback, value: this.itemQuestion});
+    this.QuestionsSelected.push(this.itemQuestion._id);
+    this.itemsSelectedQuestions.push({label: this.itemQuestion.feedback, value: this.itemQuestion._id});
+    
     console.log(this.itemsSelectedQuestions);
   }
 

@@ -22,12 +22,14 @@ import {DropdownModule} from 'primeng/dropdown';
 import {MultiSelectModule} from 'primeng/multiselect';             
 import {ListboxModule} from 'primeng/listbox';
 import {TableModule} from 'primeng/table';
+import {TabMenuModule} from 'primeng/tabmenu';
 
 
 import Quill from 'quill';
 import ImageResize  from 'quill-image-resize';
 import { ModuleComponent } from './serpro-components/module-creation/module-creation.component';
-import { TestCreationComponent } from './serpro-components/test-creation/test-creation.component'
+import { TestCreationComponent } from './serpro-components/test-creation/test-creation.component';
+import { MenuComponent } from './menu/menu.component'
 
 
 
@@ -39,8 +41,7 @@ import { TestCreationComponent } from './serpro-components/test-creation/test-cr
     SerproNgQuillComponent,
     ModuleComponent,
     TestCreationComponent,
-    
-    
+    MenuComponent    
   ],
   imports: [
     BrowserModule,
@@ -58,7 +59,8 @@ import { TestCreationComponent } from './serpro-components/test-creation/test-cr
     DropdownModule,
     MultiSelectModule,
     ListboxModule,
-    TableModule
+    TableModule,
+    TabMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

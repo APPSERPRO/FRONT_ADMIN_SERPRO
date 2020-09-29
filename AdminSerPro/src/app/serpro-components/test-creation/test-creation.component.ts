@@ -16,19 +16,18 @@ export class TestCreationComponent implements OnInit {
   icfesTest: IcfesTest;
   itemsModules: SelectItem[];
   itemModule: string;
+
   itemsQuestions: SelectItem[];
   itemQuestion: Question;
-  QuestionsSelected: String[];
-  itemsSelectedQuestions: SelectItem[];
 
+  questionsSelected: Question[];
 
   constructor(
     private icfesTestService: IcfesTestService,
     private icfestQuestionService: IcfestQuestionService,
     private icfesModuleServices: IcfestModuleService
   ) { 
-    this.itemsSelectedQuestions = [];
-    this.QuestionsSelected = [];
+    this.questionsSelected = [];
     
     this.icfesTest = new IcfesTest();
     this.icfesModuleServices.getIcfesModule().subscribe((res: any)=>{
@@ -50,17 +49,33 @@ export class TestCreationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  deleteQuestion(_id: String){
+    let posDelete;
+    for(let i=0; i<this.questionsSelected.length; i++){
+      if(_id==this.questionsSelected[i]._id){
+        posDelete=i;
+      }
+    }
+
+    this.questionsSelected.splice(posDelete,1);
+    console.log(this.questionsSelected);
+  }
+
   updateList() {
-    this.QuestionsSelected.push(this.itemQuestion._id);
-    this.itemsSelectedQuestions.push({label: this.itemQuestion.feedback, value: this.itemQuestion._id});
-    
-    console.log(this.itemsSelectedQuestions);
+    this.questionsSelected.push(this.itemQuestion);
   }
 
   saveQuestion(){
     this.updateList();
 
-    this.icfesTest.questions=this.QuestionsSelected;
+    //CREATE A TEMPORAL ARRAY WHIT QUESTIONID
+    let questionId = [];
+    for(let i=0; i<this.questionsSelected.length; i++){
+      questionId.push(this.questionsSelected[i]._id);
+    }
+
+    
+    this.icfesTest.questions=questionId;
     this.icfesTestService.posIcfesModule(this.icfesTest);
 
     console.log(this.icfesTest);

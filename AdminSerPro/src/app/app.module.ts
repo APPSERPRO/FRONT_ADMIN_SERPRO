@@ -21,6 +21,7 @@ import {AccordionModule} from 'primeng/accordion';
 import {DropdownModule} from 'primeng/dropdown';
 import {MultiSelectModule} from 'primeng/multiselect';             
 import {ListboxModule} from 'primeng/listbox';
+import {TableModule} from 'primeng/table';
 
 
 import Quill from 'quill';
@@ -56,7 +57,8 @@ import { TestCreationComponent } from './serpro-components/test-creation/test-cr
     HttpClientModule,
     DropdownModule,
     MultiSelectModule,
-    ListboxModule
+    ListboxModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

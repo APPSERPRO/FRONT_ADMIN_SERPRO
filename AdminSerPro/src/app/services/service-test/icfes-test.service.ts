@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IcfesTest } from '../models/icfes-test.model';
-import { environment } from '../../environments/environment';
+import { IcfesTest } from '../../models/test.model';
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -18,10 +18,17 @@ export class IcfesTestService {
    }
 
   getIcfesTest(){
-    return this.http.get(`${environment.urlApiQuestionsSerpro}`+ `icfesTest`);
+    return this.http.get(`${environment.urlApiQuestionsSerpro}/icfesTest`);
   }
 
   posIcfesModule(icfesTests: IcfesTest)  {
-    return this.http.post(`${environment.urlApiQuestionsSerpro}` + `icfesTest`, icfesTests);
+    return this.http.post(`${environment.urlApiQuestionsSerpro}/icfesTest`, icfesTests).subscribe(
+      (response) =>{
+        console.log (response);
+      },
+      error => {
+        console.log (error);
+      }
+    );
   }
 }

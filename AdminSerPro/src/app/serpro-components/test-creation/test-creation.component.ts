@@ -1,44 +1,69 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { from, Observable } from 'rxjs';
-import { IcfesTest } from 'src/app/models/icfes-test.model';
-//import { IcfesTest } from 'src/app/models/icfes-module.model';
-import { IcfesTestService } from '../../services/icfes-test.service'
+import { Component, OnInit, ɵConsole } from '@angular/core';
+import { IcfesTest } from '../../models/test.model';
+import { SelectItem } from 'primeng/api';
+import { IcfesTestService } from '../../services/service-test/icfes-test.service';
+import { IcfestQuestionService } from 'src/app/services/service-question/icfest-question.service';
+import { IcfestModuleService } from '../../services/service-module/icfest-module.service';
+import { Question } from 'src/app/models/question.model';
 
 @Component({
   selector: 'app-test-creation',
   templateUrl: './test-creation.component.html',
-  styleUrls: ['./test-creation.component.css'],
-  providers: [IcfesTestService]
+  styleUrls: ['./test-creation.component.css']
 })
 export class TestCreationComponent implements OnInit {
 
-  constructor(public icfesTestService: IcfesTestService) { }
+  icfesTest: IcfesTest;
+  itemsModules: SelectItem[];
+  itemModule: string;
+  itemsQuestions: SelectItem[];
+  itemQuestion: Question;
+  QuestionsSelected: String[];
+  itemsSelectedQuestions: SelectItem[];
+
+
+  constructor(
+    private icfesTestService: IcfesTestService,
+    private icfestQuestionService: IcfestQuestionService,
+    private icfesModuleServices: IcfestModuleService
+  ) { 
+    this.itemsSelectedQuestions = [];
+    this.QuestionsSelected = [];
+    
+    this.icfesTest = new IcfesTest();
+    this.icfesModuleServices.getIcfesModule().subscribe((res: any)=>{
+      this.itemsModules = [];
+        for (let i = 0; i < res.length; i++) {
+            this.itemsModules.push({label: res[i].knowledgeArea, value: res[i]._id});
+        }  
+    });
+
+    this.icfestQuestionService.getQuestions().subscribe((res: any)=>{
+      this.itemsQuestions = [];
+      for (let i = 0; i< res.length; i++){
+
+        this.itemsQuestions.push({label: res[i].statement, value: res[i]});
+      }
+    });
+  };
 
   ngOnInit(): void {
-    this.getIcfesModule();
-  };
+  }
 
-  resetForm(form?: NgForm){
-    if(form){
-      form.reset();
-      this.icfesTestService.selectedTest = new IcfesTest();
-    };
-  };
+  updateList() {
+    this.QuestionsSelected.push(this.itemQuestion._id);
+    this.itemsSelectedQuestions.push({label: this.itemQuestion.feedback, value: this.itemQuestion._id});
+    
+    console.log(this.itemsSelectedQuestions);
+  }
 
-  getIcfesModule(){
-    this.icfesTestService.getIcfesTest()
-    .subscribe(res=>{
-      this.icfesTestService.icfesTests=res as IcfesTest[];
-      console.log(res)
-    });
-  };
+  saveQuestion(){
+    this.updateList();
 
-  addModule( form: NgForm ): void {
-    this.icfesTestService.posIcfesModule(new IcfesTest(form.value))
-    .subscribe(res =>{
-      this.resetForm(form);
-      this.getIcfesModule();
-    });
-  };
+    this.icfesTest.questions=this.QuestionsSelected;
+    this.icfesTestService.posIcfesModule(this.icfesTest);
+
+    console.log(this.icfesTest);
+  }
+
 }

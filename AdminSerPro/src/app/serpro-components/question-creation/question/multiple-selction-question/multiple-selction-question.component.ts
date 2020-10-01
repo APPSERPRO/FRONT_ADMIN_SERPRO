@@ -3,9 +3,8 @@ import { Answer } from 'src/app/models/answer.model';
 import { Question } from 'src/app/models/question.model';
 import { IcfestQuestionService } from 'src/app/services/service-question/icfest-question.service';
 import { environment } from 'src/environments/environment';
-import {SelectItem} from 'primeng/api';
-import {IcfestModuleService} from '../../../../services/service-module/icfest-module.service';
-import {IcfesModule} from '../../../../models/module.model';
+import { SelectItem } from 'primeng/api';
+import { IcfestModuleService } from '../../../../services/service-module/icfest-module.service';
 
 
 

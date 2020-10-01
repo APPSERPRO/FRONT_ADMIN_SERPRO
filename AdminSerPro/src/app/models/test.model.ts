@@ -4,11 +4,11 @@ export class IcfesTest {
     title: string;
     description: string;
     progress: number;
-    module: number;
-    questions: Question[];
+    moduleId: String;
+    questions: String[];
 
     constructor () {
-      this.questions = new Array <Question>();
+      this.questions = new Array <String>();
     }
 
 

@@ -1,47 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { IcfesModule } from 'src/app/models/icfes-module.model';
-import { IcfestModuleService } from '../../services/service-module/icfest-module.service'
+import { SelectItem } from 'primeng/api';
+import { IcfestModuleService } from 'src/app/services/service-module/icfest-module.service';
+import { IcfesModule } from '../../models/module.model'
 
 @Component({
-  selector: 'app-module',
+  selector: 'app-icfes-module',
   templateUrl: './module-creation.component.html',
-  styleUrls: ['./module-creation.component.css'],
-  providers: [IcfestModuleService]
+  styleUrls: ['./module-creation.component.css']
 })
 export class ModuleComponent implements OnInit {
   
-  icfesModules: [];
-  selectedModule: IcfesModule;
+  icfesModule: IcfesModule;
+  formsCorrect : boolean = true;
+  items: SelectItem[];
+  item: string;
 
-  constructor(public icfestModuleService: IcfestModuleService) {
-    this.selectedModule = new IcfesModule();
+  constructor(private icfesModuleService: IcfestModuleService) {
+    this.icfesModule = new IcfesModule();
+
    }
 
   ngOnInit(): void {
-    this.getIcfesModule();
+
   };
 
-  resetForm(form?: NgForm){
-    if(form){
-      form.reset();
-      this.selectedModule = new IcfesModule();
-    };
-  };
+  saveIcfesModule(){
+    if(this.icfesModule.description != null){
+      if(this.icfesModule.evaluationSubject != null){
+        if(this.icfesModule.knowledgeArea != null){
+          this.icfesModuleService.posIcfesModule(this.icfesModule);
+        }
+      }
+    }
+  }
 
-  getIcfesModule(){
-    this.icfestModuleService.getIcfesModule()
-    .subscribe(res=>{
-      // this.icfestModuleService.icfesModules=res as IcfesModule[];
-      console.log(res)
-    });
-  };
-
-  addModule( form: NgForm ): void {
-    this.icfestModuleService.posIcfesModule(new IcfesModule(form.value))
-    .subscribe(res =>{
-      this.resetForm(form);
-      this.getIcfesModule();
-    });
-  };
 }

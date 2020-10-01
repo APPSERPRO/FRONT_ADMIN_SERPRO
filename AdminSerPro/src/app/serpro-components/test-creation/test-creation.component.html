@@ -25,7 +25,7 @@
           </div>
         </div>
       </p-footer>
-  </p-card>
+  </p-card> 
 
   <p-card header ="Modulo"  [style]="{'width': '70rem', 'margin-bottom': '4em', 'margin-left':'auto','margin-right':'auto'}">
       <p-dropdown [options]="itemsModules" [style]="{'width': '68rem'}"
@@ -33,9 +33,32 @@
   </p-card>
 
   <p-card header ="Preguntas"  [style]="{'width': '70rem', 'margin-bottom': '4em', 'margin-left':'auto','margin-right':'auto'}">
-    <!-- LISTA PARA MOSTRAR LAS PREGUNTAS QUE SE ESTAN AGREGANDO-->
-    <p-listbox [options]="itemsSelectedQuestions" [(ngModel)]="itemQuestion" optionLabel="label"></p-listbox>
-    
+
+
+    <p-card>
+      <p-table [value]="questionsSelected">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Id</th>
+            <th>Cantidad de respuestas</th>
+            <th> </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-question>
+          <tr>
+            <td>{{question._id}}</td>
+            <td>{{question.statement}}</td>
+            <td>
+              <a (click)="deleteQuestion(question._id)">
+                <i class="pi pi-times"></i>
+              </a>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+    </p-card>
+
     <p-dropdown [options]="itemsQuestions" [style]="{'width': '68rem'}"
     [(ngModel)]="itemQuestion" placeholder="Selecciona la pregunta" [virtualScroll]="true" [itemSize]="31" [filter]="false"></p-dropdown>
     <button pButton type="button" label="GUARDAR PREGUNTA" (click)="updateList ()"  [style]="{'width': '20rem'}"></button>

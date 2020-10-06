@@ -1,0 +1,51 @@
+<p-card header="CREAR UN MODULO">
+
+  <br><br>
+
+
+<p-card header="Area de conocimiento" [style]="{'width': '70rem', 'margin-bottom': '2em', 'margin-left':'auto','margin-right':'auto'}">
+    <div>
+        <input type ="text" class="p-inputtext-lg" [style]="{'width': '68rem', 'margin-left':'auto','margin-right':'auto'}" name="knowledgeArea" [(ngModel)]="icfesModule.knowledgeArea" >
+    </div>
+    <p-footer>
+      <div class="alert-danger" *ngIf="formsCorrect == false">
+        <div class="container-error-message" >
+          El area de conocimiento es requerido
+        </div>
+      </div>
+    </p-footer>
+</p-card>
+
+<p-card header="Descripcion"  [style]="{'width': '70rem', 'margin-bottom': '4em', 'margin-left':'auto','margin-right':'auto'}">
+    <div>
+      <input type ="text" class="p-inputtext-lg" [style]="{'width': '68rem', 'margin-left':'auto','margin-right':'auto'}" name="description" [(ngModel)]="icfesModule.description" >
+    </div>
+    <p-footer>
+      <div class="alert-danger" *ngIf="formsCorrect == false">
+        <div class="container-error-message" >
+          Se requiere una descipcion del modulo
+        </div>
+      </div>
+    </p-footer>
+</p-card>
+
+<p-card header="Asunto de evaluacion"  [style]="{'width': '70rem', 'margin-bottom': '4em', 'margin-left':'auto','margin-right':'auto'}">
+    <div>
+      <input type ="text" class="p-inputtext-lg" [style]="{'width': '68rem', 'margin-left':'auto','margin-right':'auto'}" name="evaluationSubject" [(ngModel)]="icfesModule.evaluationSubject" >
+    </div>
+    <p-footer>
+      <div class="alert-danger" *ngIf="formsCorrect == false">
+        <div class="container-error-message" >
+          Se requiere el tipo de modulo
+        </div>
+      </div>
+    </p-footer>
+</p-card>
+
+
+<button pButton type="button" label="GUARDAR MODULO" (click)="saveIcfesModule()"  [style]="{'width': '30rem', 'margin-bottom': '4em', 'margin-left':'400px'}"></button>
+
+
+
+
+</p-card>

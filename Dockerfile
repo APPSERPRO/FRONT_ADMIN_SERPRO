@@ -15,7 +15,6 @@ FROM nginx:1.19.3
 
 COPY /usr/src/AdminAppSerpro/dist /usr/share/nginx/html
 
-
 EXPOSE 9090
 
 CMD ["npm", "start"]

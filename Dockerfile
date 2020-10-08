@@ -9,12 +9,12 @@ RUN npm audit fix
 RUN npm install -g @angular/cli@7.3.9
 
 COPY [".", "/usr/src/AdminAppSerpro"]
-RUN npm build
+RUN npm run build --prod --output-path=/dist
 
 FROM nginx:1.19.3
 
-COPY /usr/src/AdminAppSerpro/dist /usr/share/nginx/html
+COPY --from=0 /usr/src/AdminAppSerpro/dist/AdminSerPro /usr/share/nginx/html
 
 EXPOSE 9090
 
-CMD ["npm", "start"]
+# CMD ["npm", "start"]

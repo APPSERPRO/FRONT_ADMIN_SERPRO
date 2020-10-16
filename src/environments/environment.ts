@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
   multipleSelectionQuestionType: 'multiple-selection',
-  urlApiQuestionsSerpro: 'https://serproapi.herokuapp.com'
+  urlQuestionApi: window["env"]["apiUrl"] || "default",
 };

@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  multipleSelectionQuestionType: 'multiple-selection'
+  multipleSelectionQuestionType: 'multiple-selection',
+  urlQuestionApi:  window["env"]["apiUrl"] || "default",
 };

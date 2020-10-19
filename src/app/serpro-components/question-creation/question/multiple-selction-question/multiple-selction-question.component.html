@@ -7,7 +7,7 @@
   <p-footer>
     <div class="alert-danger" *ngIf="formsCorrect == false">
       <div class="container-error-message" >
-
+        Se requiere agregar el area de conocimiento
       </div>
     </div>
   </p-footer>
@@ -16,12 +16,12 @@
 
 <p-card header="Titulo">
   <div>
-    <input type ="text" class="p-inputtext-lg">
+    <input type ="text" class="p-inputtext-lg" [(ngModel)]="question.title">
   </div>
   <p-footer>
     <div class="alert-danger" *ngIf="formsCorrect == false">
       <div class="container-error-message" >
-
+        Se requiere agregar el titulo
       </div>
     </div>
   </p-footer>

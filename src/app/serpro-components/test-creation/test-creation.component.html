@@ -10,7 +10,7 @@
 
   <p-card header="Titulo">
       <div>
-        <input type ="text" class="p-inputtext-lg">
+        <input type ="text" class="p-inputtext-lg" [(ngModel)]="icfesTest.title" >
       </div>
       <p-footer>
         <div class="alert-danger">
@@ -41,15 +41,15 @@
       <p-table [value]="questionsSelected">
         <ng-template pTemplate="header">
           <tr>
-            <th>Id</th>
-            <th>Cantidad de respuestas</th>
+            <th>Titulo</th>
+            <th>Enunciado</th>
             <th> </th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-question>
           <tr>
-            <td>{{question._id}}</td>
-            <td>{{question.statement}}</td>
+            <td>{{question.title}}</td>
+            <td [innerHtml]="question.statement"></td>
             <td>
               <a (click)="deleteQuestion(question._id)">
                 <i class="pi pi-times"></i>
@@ -62,7 +62,7 @@
     </p-card>
 
     <p-dropdown [options]="itemsQuestions" [style]="{'width': '100%'}"
-    [(ngModel)]="itemQuestion" placeholder="Selecciona la pregunta" [virtualScroll]="true" [itemSize]="31" [filter]="false"></p-dropdown>
+    [(ngModel)]="itemQuestion" placeholder="Selecciona la pregunta" [virtualScroll]="true" [filter]="true"></p-dropdown>
     <button pButton type="button" label="GUARDAR PREGUNTA" (click)="updateList ()" ></button>
   </p-card>
 

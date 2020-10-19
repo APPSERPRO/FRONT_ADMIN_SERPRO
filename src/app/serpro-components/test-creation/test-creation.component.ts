@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IcfesTest } from '../../models/test.model';
 import { SelectItem } from 'primeng/api';
 import { IcfesTestService } from '../../services/service-test/icfes-test.service';
@@ -41,7 +41,7 @@ export class TestCreationComponent implements OnInit {
       this.itemsQuestions = [];
       for (let i = 0; i< res.length; i++){
 
-        this.itemsQuestions.push({label: res[i].statement, value: res[i]});
+        this.itemsQuestions.push({label: res[i].title, value: res[i]});
       }
     });
   };
@@ -58,7 +58,6 @@ export class TestCreationComponent implements OnInit {
     }
 
     this.questionsSelected.splice(posDelete,1);
-    console.log(this.questionsSelected);
   }
 
   updateList() {
@@ -77,8 +76,6 @@ export class TestCreationComponent implements OnInit {
     
     this.icfesTest.questions=questionId;
     this.icfesTestService.posIcfesModule(this.icfesTest);
-
-    console.log(this.icfesTest);
   }
 
 }

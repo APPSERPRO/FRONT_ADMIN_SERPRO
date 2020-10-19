@@ -67,27 +67,36 @@ export class MultipleSelctionQuestionComponent implements OnInit {
   saveQuestion () {
   
 
-    this.question.icfesModuleId = this.item.valueOf();  
-    
+    if(this.question.icfesModuleId != null){
+      this.question.icfesModuleId = this.item.valueOf(); 
+    } 
     let ansWrds = this.question.answers;
 
-    if(this.question.statement != null){
-      for (let i of ansWrds){
-        if (i.statement == undefined || i.grade==0){
-          this.formsCorrect =false;
-          break;
+    if(this.question.title != null){
+      if(this.question.icfesModuleId != null){
+        if(this.question.statement != null){
+          for (let i of ansWrds){
+            if (i.statement == undefined || i.grade==0){
+              this.formsCorrect =false;
+              break;
+            }
+          }
+          if(this.question.feedback != null) {
+            this.icfestQuestionService.createQuestion(this.question);
+          }else{
+            this.formsCorrect =false;
+            
+          }
         }
-      }
-      if(this.question.feedback != null) {
-        this.icfestQuestionService.createQuestion(this.question);
+        else{
+          this.formsCorrect =false;
+        }
       }else{
         this.formsCorrect =false;
-        
       }
     }
     else{
       this.formsCorrect =false;
-    
     }
   }
 

@@ -66,10 +66,6 @@ export class MultipleSelctionQuestionComponent implements OnInit {
 
   saveQuestion () {
   
-
-    if(this.question.icfesModuleId != null){
-      this.question.icfesModuleId = this.item.valueOf(); 
-    } 
     let ansWrds = this.question.answers;
 
     if(this.question.title != null){
@@ -82,6 +78,7 @@ export class MultipleSelctionQuestionComponent implements OnInit {
             }
           }
           if(this.question.feedback != null) {
+            console.log("paso")
             this.icfestQuestionService.createQuestion(this.question);
           }else{
             this.formsCorrect =false;

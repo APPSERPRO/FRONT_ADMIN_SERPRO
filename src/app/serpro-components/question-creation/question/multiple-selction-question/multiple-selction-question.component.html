@@ -1,8 +1,8 @@
 <br><br>
 
-<p-card header="Area de conocimiento">
+<p-card header="Modulo">
   <div>
-    <p-dropdown [options]="items" [(ngModel)]="item" placeholder="Seleccione el Área de conocim" [virtualScroll]="true" [itemSize]="31" [filter]="false" [style]="{'width': '100%'}"></p-dropdown>
+    <p-dropdown [options]="items" [(ngModel)]="question.icfesModuleId" placeholder="Seleccione el Modulo" [virtualScroll]="true" [itemSize]="31" [filter]="false" [style]="{'width': '100%'}"></p-dropdown>
   </div>
   <p-footer>
     <div class="alert-danger" *ngIf="formsCorrect == false">

@@ -17,6 +17,7 @@ export class TestCreationComponent implements OnInit {
   itemsModules: SelectItem[];
   itemModule: string;
   display: boolean = false;
+  mensaje: String;
 
   itemsQuestions: SelectItem[];
   itemQuestion: Question;
@@ -28,6 +29,7 @@ export class TestCreationComponent implements OnInit {
     private icfestQuestionService: IcfestQuestionService,
     private icfesModuleServices: IcfestModuleService
   ) { 
+    this.mensaje = "Algo falta por llenar, \n Por favor revise los campos que ningunno se encuentre vacio";
     this.questionsSelected = [];
     
     this.icfesTest = new IcfesTest();
@@ -72,16 +74,41 @@ export class TestCreationComponent implements OnInit {
   saveQuestion(){
     this.updateList();
 
-    //CREATE A TEMPORAL ARRAY WHIT QUESTIONID
+    
+
+
+    try{
+      //CREATE A TEMPORAL ARRAY WHIT QUESTIONID
     let questionId = [];
     for(let i=0; i<this.questionsSelected.length; i++){
       questionId.push(this.questionsSelected[i]._id);
     }
+      this.icfesTest.questions=questionId;
+      if(this.icfesTest.description != null){
+        if(this.icfesTest.moduleId != null){
+          if(this.icfesTest.questions != null){
+            if(this.icfesTest.title != null){
+              this.icfesTestService.posIcfesModule(this.icfesTest);
+              this.mensaje = "La prueba se ha subido correctamente"; 
+              this.showDialog();
+            }else {
+              this.showDialog();
+            }
+          }else {
+            this.showDialog();
+          }
+        }else {
+          this.showDialog();
+        }
+      }else {
+        this.showDialog();
+      }
 
+    }catch (err){
+      this.showDialog();
+    }
     
-    this.icfesTest.questions=questionId;
-    this.icfesTestService.posIcfesModule(this.icfesTest);
-    this.showDialog();
+    
   }
 
 }

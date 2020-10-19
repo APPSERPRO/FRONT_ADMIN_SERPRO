@@ -1,11 +1,33 @@
 <br><br>
 
+<p-card header="Area de conocimiento">
+  <div>
+    <p-dropdown [options]="items" [(ngModel)]="item" placeholder="Seleccione el Área de conocim" [virtualScroll]="true" [itemSize]="31" [filter]="false" [style]="{'width': '100%'}"></p-dropdown>
+  </div>
+  <p-footer>
+    <div class="alert-danger" *ngIf="formsCorrect == false">
+      <div class="container-error-message" >
+
+      </div>
+    </div>
+  </p-footer>
+</p-card>
 
 
-<p-dropdown [options]="items" [(ngModel)]="item" placeholder="Seleccione el Área de conocim" [virtualScroll]="true" [itemSize]="31" [filter]="false"></p-dropdown>
+<p-card header="Titulo">
+  <div>
+    <input type ="text" class="p-inputtext-lg">
+  </div>
+  <p-footer>
+    <div class="alert-danger" *ngIf="formsCorrect == false">
+      <div class="container-error-message" >
 
+      </div>
+    </div>
+  </p-footer>
+</p-card>
 
-<p-card header="Enunciado de la pregunta" [style]="{'width': '70rem', 'margin-bottom': '2em', 'margin-left':'auto','margin-right':'auto'}">
+<p-card header="Enunciado de la pregunta">
     <div>
         <serpro-ng-quill [idEditor]="'questionStatement'" name="questionStatement" [(ngModel)]="question.statement" ></serpro-ng-quill>
     </div>
@@ -22,7 +44,7 @@
 </p-card>
 
 <!--<hr>-->
-<p-card header="Respuestas "  [style]="{'width': '70rem', 'margin-bottom': '1em', 'margin-left':'auto','margin-right':'auto'}">
+<p-card header="Respuestas ">
   <div *ngFor="let answer of question.answers; let indexAnswer = index">
 
         <p-card header="Respuesta {{indexAnswer+1}}">
@@ -60,7 +82,7 @@
     </p-footer>
 </p-card>
 
-<p-card header="Retroalimentacion"  [style]="{'width': '70rem', 'margin-bottom': '4em', 'margin-left':'auto','margin-right':'auto'}">
+<p-card header="Retroalimentacion">
     <div>
         <serpro-ng-quill   [idEditor]="'questionFeedback'" name="questionStatement" [(ngModel)]="question.feedback" ></serpro-ng-quill>
     </div>
@@ -76,6 +98,6 @@
 </p-card>
 
 
-<button pButton type="button" label="GUARDAR PREGUNTA" (click)="saveQuestion ()"  [style]="{'width': '30rem', 'margin-bottom': '4em', 'margin-left':'400px'}"></button>
+<button pButton type="button" label="GUARDAR PREGUNTA" (click)="saveQuestion ()"></button>
 
 

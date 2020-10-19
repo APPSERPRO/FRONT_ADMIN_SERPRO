@@ -72,10 +72,6 @@ export class TestCreationComponent implements OnInit {
   }
 
   saveQuestion(){
-    this.updateList();
-
-    
-
 
     try{
       //CREATE A TEMPORAL ARRAY WHIT QUESTIONID

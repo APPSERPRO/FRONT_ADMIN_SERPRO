@@ -14,6 +14,7 @@ export class ModuleComponent implements OnInit {
   formsCorrect : boolean = true;
   items: SelectItem[];
   item: string;
+  display: boolean;
 
   constructor(private icfesModuleService: IcfestModuleService) {
     this.icfesModule = new IcfesModule();
@@ -24,11 +25,16 @@ export class ModuleComponent implements OnInit {
 
   };
 
+  showDialog(){
+    this.display = true;
+  }
+
   saveIcfesModule(){
     if(this.icfesModule.description != null){
       if(this.icfesModule.evaluationSubject != null){
         if(this.icfesModule.knowledgeArea != null){
           this.icfesModuleService.posIcfesModule(this.icfesModule);
+          this.showDialog();
         }
       }
     }

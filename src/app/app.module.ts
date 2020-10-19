@@ -30,6 +30,7 @@ import ImageResize  from 'quill-image-resize';
 import { ModuleComponent } from './serpro-components/module-creation/module-creation.component';
 import { TestCreationComponent } from './serpro-components/test-creation/test-creation.component';
 import { MenuComponent } from './menu/menu.component'
+import {DialogModule} from 'primeng/dialog';
 
 
 
@@ -60,7 +61,8 @@ import { MenuComponent } from './menu/menu.component'
     MultiSelectModule,
     ListboxModule,
     TableModule,
-    TabMenuModule
+    TabMenuModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -66,6 +66,10 @@
     <button pButton type="button" label="GUARDAR PREGUNTA" (click)="updateList ()" ></button>
   </p-card>
 
+  <p-dialog header="Confirmacion" [(visible)]="display">
+    La prueba se ha subido correctamente
+  </p-dialog>
+
   <button pButton type="button" label="GUARDAR PRUEBA" (click)="saveQuestion()"  ></button>
 
 

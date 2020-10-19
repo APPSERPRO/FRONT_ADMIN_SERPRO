@@ -16,6 +16,7 @@ export class TestCreationComponent implements OnInit {
   icfesTest: IcfesTest;
   itemsModules: SelectItem[];
   itemModule: string;
+  display: boolean = false;
 
   itemsQuestions: SelectItem[];
   itemQuestion: Question;
@@ -49,6 +50,10 @@ export class TestCreationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showDialog() {
+    this.display = true;
+  }
+
   deleteQuestion(_id: String){
     let posDelete;
     for(let i=0; i<this.questionsSelected.length; i++){
@@ -76,6 +81,7 @@ export class TestCreationComponent implements OnInit {
     
     this.icfesTest.questions=questionId;
     this.icfesTestService.posIcfesModule(this.icfesTest);
+    this.showDialog();
   }
 
 }

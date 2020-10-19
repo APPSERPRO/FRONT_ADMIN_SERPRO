@@ -20,6 +20,7 @@ export class MultipleSelctionQuestionComponent implements OnInit {
   formsCorrect : boolean = true;
   items: SelectItem[];
   item: string;
+  display: boolean = false;
 
   constructor(
     private icfestModuleService : IcfestModuleService,
@@ -42,6 +43,10 @@ export class MultipleSelctionQuestionComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  showDialog() {
+    this.display = true;
   }
 
   getFromModules(){
@@ -80,6 +85,7 @@ export class MultipleSelctionQuestionComponent implements OnInit {
           if(this.question.feedback != null) {
             console.log("paso")
             this.icfestQuestionService.createQuestion(this.question);
+            this.showDialog();
           }else{
             this.formsCorrect =false;
             

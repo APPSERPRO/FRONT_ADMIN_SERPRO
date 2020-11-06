@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IcfesTest } from '../../models/test.model';
 import { SelectItem } from 'primeng/api';
 import { IcfesTestService } from '../../services/service-test/icfes-test.service';
@@ -16,6 +16,8 @@ export class TestCreationComponent implements OnInit {
   icfesTest: IcfesTest;
   itemsModules: SelectItem[];
   itemModule: string;
+  display: boolean = false;
+  mensaje: String;
 
   itemsQuestions: SelectItem[];
   itemQuestion: Question;
@@ -27,6 +29,7 @@ export class TestCreationComponent implements OnInit {
     private icfestQuestionService: IcfestQuestionService,
     private icfesModuleServices: IcfestModuleService
   ) { 
+    this.mensaje = "Algo falta por llenar, \n Por favor revise los campos que ningunno se encuentre vacio";
     this.questionsSelected = [];
     
     this.icfesTest = new IcfesTest();
@@ -41,12 +44,16 @@ export class TestCreationComponent implements OnInit {
       this.itemsQuestions = [];
       for (let i = 0; i< res.length; i++){
 
-        this.itemsQuestions.push({label: res[i].statement, value: res[i]});
+        this.itemsQuestions.push({label: res[i].title, value: res[i]});
       }
     });
   };
 
   ngOnInit(): void {
+  }
+
+  showDialog() {
+    this.display = true;
   }
 
   deleteQuestion(_id: String){
@@ -58,7 +65,6 @@ export class TestCreationComponent implements OnInit {
     }
 
     this.questionsSelected.splice(posDelete,1);
-    console.log(this.questionsSelected);
   }
 
   updateList() {
@@ -66,19 +72,39 @@ export class TestCreationComponent implements OnInit {
   }
 
   saveQuestion(){
-    this.updateList();
 
-    //CREATE A TEMPORAL ARRAY WHIT QUESTIONID
+    try{
+      //CREATE A TEMPORAL ARRAY WHIT QUESTIONID
     let questionId = [];
     for(let i=0; i<this.questionsSelected.length; i++){
       questionId.push(this.questionsSelected[i]._id);
     }
+      this.icfesTest.questions=questionId;
+      if(this.icfesTest.description != null){
+        if(this.icfesTest.moduleId != null){
+          if(this.icfesTest.questions != null){
+            if(this.icfesTest.title != null){
+              this.icfesTestService.posIcfesModule(this.icfesTest);
+              this.mensaje = "La prueba se ha subido correctamente"; 
+              this.showDialog();
+            }else {
+              this.showDialog();
+            }
+          }else {
+            this.showDialog();
+          }
+        }else {
+          this.showDialog();
+        }
+      }else {
+        this.showDialog();
+      }
 
+    }catch (err){
+      this.showDialog();
+    }
     
-    this.icfesTest.questions=questionId;
-    this.icfesTestService.posIcfesModule(this.icfesTest);
-
-    console.log(this.icfesTest);
+    
   }
 
 }

@@ -20,6 +20,7 @@ export class MultipleSelctionQuestionComponent implements OnInit {
   formsCorrect : boolean = true;
   items: SelectItem[];
   item: string;
+  display: boolean = false;
 
   constructor(
     private icfestModuleService : IcfestModuleService,
@@ -44,6 +45,10 @@ export class MultipleSelctionQuestionComponent implements OnInit {
 
   }
 
+  showDialog() {
+    this.display = true;
+  }
+
   getFromModules(){
     return this.icfestModuleService.getIcfesModule();
   }
@@ -66,28 +71,35 @@ export class MultipleSelctionQuestionComponent implements OnInit {
 
   saveQuestion () {
   
-
-    this.question.icfesModuleId = this.item.valueOf();  
-    
     let ansWrds = this.question.answers;
 
-    if(this.question.statement != null){
-      for (let i of ansWrds){
-        if (i.statement == undefined || i.grade==0){
-          this.formsCorrect =false;
-          break;
+    if(this.question.title != null){
+      if(this.question.icfesModuleId != null){
+        if(this.question.statement != null){
+          for (let i of ansWrds){
+            if (i.statement == undefined || i.grade==0){
+              this.formsCorrect =false;
+              break;
+            }
+          }
+          if(this.question.feedback != null) {
+            console.log("paso")
+            this.icfestQuestionService.createQuestion(this.question);
+            this.showDialog();
+          }else{
+            this.formsCorrect =false;
+            
+          }
         }
-      }
-      if(this.question.feedback != null) {
-        this.icfestQuestionService.createQuestion(this.question);
+        else{
+          this.formsCorrect =false;
+        }
       }else{
         this.formsCorrect =false;
-        
       }
     }
     else{
       this.formsCorrect =false;
-    
     }
   }
 
